@@ -1,4 +1,4 @@
 # Unity-2D-Tutorial
 
-This tutorial is for beginners to start game development with Unity.
+This tutorial project is for beginners to start game development with Unity.
 
