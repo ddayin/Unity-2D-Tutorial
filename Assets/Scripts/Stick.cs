@@ -20,10 +20,12 @@ public class Stick : MonoBehaviour
     public float m_FallSpeed = 10.0f;
 
     private BoxCollider2D m_BoxCollider;
+    private Rigidbody2D m_RigidBody;
 
     private void Awake()
     {
         m_BoxCollider = transform.GetComponent<BoxCollider2D>();
+        m_RigidBody = transform.GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -56,10 +58,11 @@ public class Stick : MonoBehaviour
         if (m_State != State.Fall) return;
         
         if ( collision.transform.tag.Equals( "Tile" ) == true )
-        {
+        {   
             if ( collision.transform.GetComponent<Tile>().m_ID != m_ID )
             {
                 m_State = State.Landed;
+                m_RigidBody.bodyType = RigidbodyType2D.Static;
             }
         }
     }
@@ -94,7 +97,7 @@ public class Stick : MonoBehaviour
 
         // 실제로 변경된 값으로 막대기 크기 조정
         transform.localScale = new Vector3( transform.localScale.x, growY, transform.localScale.z );
-        m_BoxCollider.size = new Vector2(m_BoxCollider.size.x, growY * 0.1f);
+        // m_BoxCollider.size = new Vector2(m_BoxCollider.size.x, growY * 0.1f);
     }
 
     // 오른쪽으로 막대기가 넘어진다.
