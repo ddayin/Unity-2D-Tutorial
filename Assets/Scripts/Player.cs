@@ -2,9 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WanzyeeStudio;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance
+    {
+        get { return Singleton<Player>.instance; }
+    }
+    
     /// <summary>
     /// 플레이어의 상태
     /// </summary>
@@ -43,10 +49,6 @@ public class Player : MonoBehaviour
         {
             m_State = PlayerState.Idle;
         }
-
-        //Debug.Log( m_State.ToString() );
-
-        
     }
 
     private void FixedUpdate()
@@ -57,7 +59,6 @@ public class Player : MonoBehaviour
                 break;
             
             case PlayerState.Walk:
-                // MoveForward();
                 WalkForward();
                 break;
             
@@ -84,10 +85,5 @@ public class Player : MonoBehaviour
     private void WalkForward()
     {
         m_RigidBody.velocity = new Vector2(m_MoveSpeed, 0f);
-    }
-
-    private void StopAtEdge()
-    {
-        
     }
 }

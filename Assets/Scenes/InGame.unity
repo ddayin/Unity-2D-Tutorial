@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 772583417977776405, guid: a3f67600478a8614d8ebc00d450bbcf3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 772583417977776405, guid: a3f67600478a8614d8ebc00d450bbcf3,
         type: 3}
@@ -502,7 +502,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847080356}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -658,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 772583417977776405, guid: a3f67600478a8614d8ebc00d450bbcf3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 772583417977776405, guid: a3f67600478a8614d8ebc00d450bbcf3,
         type: 3}

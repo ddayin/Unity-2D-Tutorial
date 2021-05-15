@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ID: 0
+  transformEdge: {fileID: 3622141444113745250}
 --- !u!1 &2211718633675174008
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,12 +250,12 @@ PrefabInstance:
     - target: {fileID: 983516947724984547, guid: 992fb12794bf8cb49b4eda4672ea2706,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.591
+      value: 0.549
       objectReference: {fileID: 0}
     - target: {fileID: 983516947724984547, guid: 992fb12794bf8cb49b4eda4672ea2706,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.691
+      value: 0.638
       objectReference: {fileID: 0}
     - target: {fileID: 983516947724984547, guid: 992fb12794bf8cb49b4eda4672ea2706,
         type: 3}

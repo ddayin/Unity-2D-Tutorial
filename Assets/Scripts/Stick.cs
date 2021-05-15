@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class Stick : MonoBehaviour
@@ -21,11 +22,13 @@ public class Stick : MonoBehaviour
 
     private BoxCollider2D m_BoxCollider;
     private Rigidbody2D m_RigidBody;
+    private Tile m_Tile;
 
     private void Awake()
     {
         m_BoxCollider = transform.GetComponent<BoxCollider2D>();
         m_RigidBody = transform.GetComponent<Rigidbody2D>();
+        m_Tile = transform.parent.GetComponent<Tile>();
     }
 
     void Start()
@@ -50,21 +53,6 @@ public class Stick : MonoBehaviour
     private void FixedUpdate()
     {
         FiniteStateMachine();
-    }
-
-    // 막대기에 다른 오브젝트가 충돌했을 때의 처리
-    private void OnCollisionEnter2D( Collision2D collision )
-    {
-        if (m_State != State.Fall) return;
-        
-        if ( collision.transform.tag.Equals( "Tile" ) == true )
-        {   
-            if ( collision.transform.GetComponent<Tile>().m_ID != m_ID )
-            {
-                m_State = State.Landed;
-                m_RigidBody.bodyType = RigidbodyType2D.Static;
-            }
-        }
     }
     
     // 유한 상태 머신
@@ -96,8 +84,7 @@ public class Stick : MonoBehaviour
         float growY = transform.localScale.y + m_GrowSpeed * Time.deltaTime;
 
         // 실제로 변경된 값으로 막대기 크기 조정
-        transform.localScale = new Vector3( transform.localScale.x, growY, transform.localScale.z );
-        // m_BoxCollider.size = new Vector2(m_BoxCollider.size.x, growY * 0.1f);
+        transform.localScale = new Vector3(transform.localScale.x, growY, transform.localScale.z);
     }
 
     // 오른쪽으로 막대기가 넘어진다.
@@ -106,6 +93,16 @@ public class Stick : MonoBehaviour
         if ( m_State != State.Fall ) return;
 
         transform.Rotate( Vector3.back, m_FallSpeed * Time.deltaTime );
+        
+        if (transform.eulerAngles.z < 270f)
+        {
+            m_State = State.Landed;
+            m_RigidBody.bodyType = RigidbodyType2D.Static;
+
+            Player.instance.m_State = Player.PlayerState.Walk;
+                
+            m_Tile.transformEdge.gameObject.SetActive(false);
+        }
     }
 }
 
